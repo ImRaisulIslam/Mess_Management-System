@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_meal"
+        android:icon="@drawable/meal_management"
+        android:title="@string/nav_meal_management" />
+    <item
+        android:id="@+id/bottom_nav_payment"
+        android:icon="@drawable/payment_method"
+        android:title="@string/nav_payment" />
+    <item
+        android:id="@+id/bottom_nav_notification"
+        android:icon="@drawable/notification"
+        android:title="@string/nav_notification" />
+</menu>

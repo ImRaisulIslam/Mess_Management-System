@@ -6,4 +6,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+
+
+    <string name="nav_meal_management">Meal</string>
+    <string name="nav_notification">Notification</string>
+    <string name="nav_payment">Payment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

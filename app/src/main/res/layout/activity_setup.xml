@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/log_in"
     tools:context=".SetupActivity">
 
     <EditText
@@ -12,40 +13,52 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="173dp"
+        android:background="@drawable/inputs"
         android:ems="10"
         android:hint="User Name"
-        android:inputType="textMultiLine" />
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/user_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/inputs"
         android:ems="10"
         android:hint="Full Name"
-        android:inputType="textMultiLine" />
+        android:inputType="textPassword"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/mess_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="165dp"
+        android:layout_below="@+id/full_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/inputs"
         android:ems="10"
         android:hint="Mess Name"
-        android:inputType="textMultiLine" />
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
 
     <Button
-        android:id="@+id/save_from_setup"
-        android:layout_width="160dp"
+        android:id="@+id/create_mess"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="84dp"
-        android:text="Save" />
+        android:layout_below="@+id/mess_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Create Mess"
+        android:textColor="@color/colorwhite"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

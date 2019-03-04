@@ -18,6 +18,6 @@ public class SetupActivity extends AppCompatActivity {
         user_name = (EditText)findViewById(R.id.user_name);
         full_name = (EditText)findViewById(R.id.full_name);
         mess_name = (EditText)findViewById(R.id.mess_name);
-        save_from_setup = (Button)findViewById(R.id.save_from_setup);
+        save_from_setup = (Button)findViewById(R.id.create_mess);
     }
 }

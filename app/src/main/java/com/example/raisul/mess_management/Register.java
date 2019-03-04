@@ -21,6 +21,7 @@ public class Register extends AppCompatActivity {
     private EditText register_email, register_password, register_conform_password;
     private Button signup;
     private FirebaseAuth rAuth;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class Register extends AppCompatActivity {
         register_conform_password = (EditText) findViewById(R.id.register_conform_password);
         signup = (Button) findViewById(R.id.signup_btn);
         rAuth = FirebaseAuth.getInstance();
+        loadingBar = new ProgressDialog(this);
 
 
 
@@ -63,6 +65,12 @@ public class Register extends AppCompatActivity {
 
         else
         {
+            loadingBar.setTitle("Creating Account");
+            loadingBar.setMessage("Phease Wait.......");
+            loadingBar.show();
+            loadingBar.setCanceledOnTouchOutside(true);
+
+
             rAuth.createUserWithEmailAndPassword(email,password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -72,11 +80,13 @@ public class Register extends AppCompatActivity {
                             {
                                 SendUserToSetupActivity();
                                 Toast.makeText(Register.this, "Account Is Created Succesfully", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
                             }
                             else
                             {
                                 String message =task.getException().toString();
                                 Toast.makeText(Register.this, "Error Occured" +message, Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
                             }
                         }
                     });

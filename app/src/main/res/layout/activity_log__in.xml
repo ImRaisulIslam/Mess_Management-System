@@ -4,48 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/log_in"
     tools:context=".Log_In">
 
     <EditText
         android:id="@+id/log_in_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="107dp"
+        android:layout_marginTop="173dp"
+        android:background="@drawable/inputs"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/log_in_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="178dp"
+        android:layout_below="@+id/log_in_email"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/inputs"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/log_in"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="208dp"
-        android:text="Log In" />
+        android:layout_below="@+id/log_in_password"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Log In"
+        android:textColor="@color/colorwhite"
+        android:textStyle="bold"
+        android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/register_link"
-        android:layout_width="282dp"
+    <Button
+        android:id="@+id/register_as_mess"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="165dp"
-        android:text="if you are not register please register"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="16dp" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Register Mess"
+        android:textColor="@color/colorwhite"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/register_as_mess_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Register As Mess Member"
+        android:textColor="@color/colorwhite"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+
+
+
 
 </RelativeLayout>

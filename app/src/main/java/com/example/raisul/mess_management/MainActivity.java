@@ -2,7 +2,11 @@ package com.example.raisul.mess_management;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +16,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+
+
+    private BottomNavigationView bottom_nav;
+    private FrameLayout mFrame;
+
+    private Meal_ManageFragment meal_manageFragment;
+    private PaymentFragment paymentFragment;
+    private NotificationFragment notificationFragment;
+
 
     private FirebaseAuth mauth;
 
@@ -28,23 +40,21 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        bottom_nav =(BottomNavigationView)findViewById(R.id.bottom_nav);
+        mFrame =(FrameLayout) findViewById(R.id.main_frame);
+
+        meal_manageFragment = new Meal_ManageFragment();
+        paymentFragment = new PaymentFragment();
+        notificationFragment = new NotificationFragment();
+
+        setFragment(meal_manageFragment);
+        bottom_nav.setItemBackgroundResource(R.color.blue);
+
+
+
         mauth = FirebaseAuth.getInstance();
 
-
-
-
-
-        tabLayout=(TabLayout) findViewById(R.id.tab);
-        viewPager=(ViewPager) findViewById(R.id.view);
-
-        ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.AddFragment(new Meal_Management_Fragment(), "Meal Management");
-        adapter.AddFragment(new PaymentFragment(), "Payment");
-        adapter.AddFragment(new NotificationsFragment(), "Notification");
-
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +67,38 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        bottom_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()){
+
+                    case R.id.bottom_nav_meal :
+                        bottom_nav.setItemBackgroundResource(R.color.blue);
+                        setFragment(meal_manageFragment);
+
+                        return true;
+
+                    case R.id.bottom_nav_payment :
+                        bottom_nav.setItemBackgroundResource(R.color.colorAccent);
+                        setFragment(paymentFragment);
+                        return true;
+
+                    case R.id.bottom_nav_notification :
+                        bottom_nav.setItemBackgroundResource(R.color.dark);
+                        setFragment(notificationFragment);
+                        return true;
+
+                    default:
+                        return false;
+
+
+                }
+            }
+        });
+
     }
 
     @Override
@@ -133,6 +175,13 @@ public class MainActivity extends AppCompatActivity
         startActivity(loginIntent);
         finish();
 
+
+    }
+
+    private void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
 
     }
 }

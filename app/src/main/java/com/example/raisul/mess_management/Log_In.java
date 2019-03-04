@@ -1,5 +1,6 @@
 package com.example.raisul.mess_management;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,9 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Log_In extends AppCompatActivity {
 
-    private Button login;
+    private Button login,register_as_mess_link,register_as_member_link;
     private EditText login_email,login_password;
-    private TextView registerlink;
+
+    private ProgressDialog loadingBar;
 
     private FirebaseAuth mAuth;
 
@@ -32,10 +34,12 @@ public class Log_In extends AppCompatActivity {
         setContentView(R.layout.activity_log__in);
 
         login = (Button)findViewById(R.id.log_in);
+        register_as_mess_link = (Button)findViewById(R.id.register_as_mess);
+        register_as_member_link = (Button)findViewById(R.id.register_as_mess_member);
         login_email=(EditText)findViewById(R.id.log_in_email);
         login_password=(EditText)findViewById(R.id.log_in_password);
-        registerlink=(TextView)findViewById(R.id.register_link);
         mAuth = FirebaseAuth.getInstance();
+        loadingBar = new ProgressDialog(this);
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +49,7 @@ public class Log_In extends AppCompatActivity {
             }
         });
 
-        registerlink.setOnClickListener(new View.OnClickListener() {
+        register_as_mess_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SendUserToRegisterActivity();
@@ -69,6 +73,11 @@ public class Log_In extends AppCompatActivity {
         }
 
         else{
+             loadingBar.setTitle("Loging In");
+             loadingBar.setMessage("Phease Wait.......");
+             loadingBar.show();
+             loadingBar.setCanceledOnTouchOutside(true);
+
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -79,12 +88,14 @@ public class Log_In extends AppCompatActivity {
                             {
                                 SendUserToMainActivity();
                                 Toast.makeText(Log_In.this, "Logged In Successfully ", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
                             }
 
                             else
                                 {
                                     String message =task.getException().getMessage();
                                     Toast.makeText(Log_In.this, "Error Occured"+message, Toast.LENGTH_SHORT).show();
+                                    loadingBar.dismiss();
 
                             }
 
@@ -98,6 +109,7 @@ public class Log_In extends AppCompatActivity {
         Intent mainIntent = new Intent(Log_In.this,MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
+        finish();
     }
 
     private void SendUserToRegisterActivity() {
